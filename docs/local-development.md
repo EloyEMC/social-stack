@@ -23,7 +23,7 @@ This scaffold is for local testing only. It does not deploy to a VPS and contain
    docker compose --env-file .env up -d
    ```
 
-5. Open Postiz at <http://localhost:5000> and n8n at <http://localhost:5678>.
+5. Open Postiz at <http://localhost:5001> and n8n at <http://localhost:5678>.
 
 The first startup may take several minutes while images are downloaded and Postiz initializes its database. The Compose file includes Postiz's PostgreSQL and Redis dependencies for local use.
 
