@@ -1,0 +1,24 @@
+# Local Pi runtime state
+.atl/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Runtime data and local databases
+data/
+backups/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and generated files
+*.log
+node_modules/
+dist/
+build/
+.DS_Store
