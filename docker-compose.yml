@@ -7,14 +7,20 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+      temporal:
+        condition: service_started
     ports:
       - "${POSTIZ_PORT:-5000}:5000"
     environment:
       DATABASE_URL: postgresql://postiz:${POSTIZ_DB_PASSWORD:-local-postiz-password}@postgres:5432/postiz
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${POSTIZ_JWT_SECRET:-replace-with-a-local-only-secret}
+      MAIN_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5001}
       FRONTEND_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5001}
       NEXT_PUBLIC_APP_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5001}
+      NEXT_PUBLIC_BACKEND_URL: ${POSTIZ_BACKEND_URL:-http://localhost:5001/api}
+      BACKEND_INTERNAL_URL: ${POSTIZ_BACKEND_INTERNAL_URL:-http://localhost:3000}
+      TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS:-temporal:7233}
       IS_GENERAL: "true"
       DISABLE_REGISTRATION: ${POSTIZ_DISABLE_REGISTRATION:-false}
     volumes:
@@ -41,6 +47,13 @@ services:
     volumes:
       - postiz_redis_data:/data
 
+  temporal:
+    image: temporalio/temporal:latest
+    restart: unless-stopped
+    command: ["server", "start-dev", "--ip", "0.0.0.0"]
+    volumes:
+      - temporal_data:/data
+
   n8n:
     image: docker.n8n.io/n8nio/n8n:latest
     restart: unless-stopped
@@ -63,4 +76,5 @@ volumes:
   postiz_data:
   postiz_postgres_data:
   postiz_redis_data:
+  temporal_data:
   n8n_data:
