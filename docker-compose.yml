@@ -24,6 +24,8 @@ services:
       IS_GENERAL: "true"
       DISABLE_REGISTRATION: ${POSTIZ_DISABLE_REGISTRATION:-false}
       NOT_SECURED: ${POSTIZ_NOT_SECURED:-true}
+      FACEBOOK_APP_ID: ${FACEBOOK_APP_ID:-}
+      FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET:-}
     volumes:
       - postiz_data:/app/data
 
