@@ -13,8 +13,8 @@ services:
       DATABASE_URL: postgresql://postiz:${POSTIZ_DB_PASSWORD:-local-postiz-password}@postgres:5432/postiz
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${POSTIZ_JWT_SECRET:-replace-with-a-local-only-secret}
-      FRONTEND_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5000}
-      NEXT_PUBLIC_APP_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5000}
+      FRONTEND_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5001}
+      NEXT_PUBLIC_APP_URL: ${POSTIZ_FRONTEND_URL:-http://localhost:5001}
       IS_GENERAL: "true"
       DISABLE_REGISTRATION: ${POSTIZ_DISABLE_REGISTRATION:-false}
     volumes:
